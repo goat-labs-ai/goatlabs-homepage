@@ -9,9 +9,9 @@ const Navbar = () => {
       transition={{ duration: 0.5, delay: 0.1 }}
       className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl"
     >
-      <div className="container px-6 md:px-8 flex items-center justify-between h-16">
+      <div className="container px-6 md:px-8 flex items-center justify-between h-20">
         <a href="#" className="flex items-center">
-          <img src={goatLabsLogo} alt="GoatLabs" className="h-12 brightness-0 invert" />
+          <img src={goatLabsLogo} alt="GoatLabs" className="h-20 brightness-0 invert" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
