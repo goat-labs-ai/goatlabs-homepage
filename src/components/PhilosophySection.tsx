@@ -1,30 +1,25 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Layers, Terminal, GitBranch } from "lucide-react";
 
 const outcomes = [
   {
-    icon: ArrowUpRight,
-    title: "Compressed timelines",
-    description:
-      "Weeks to production, not quarters. AI-augmented engineering eliminates busywork — what remains is focus and craft.",
+    number: "01",
+    title: "Ship in weeks",
+    detail: "Idea → production. AI compresses the timeline. You move while competitors plan.",
   },
   {
-    icon: Layers,
-    title: "Intelligent systems",
-    description:
-      "LLM pipelines, retrieval architectures, decision automation. Applied AI that disappears into the product and makes it better.",
+    number: "02",
+    title: "AI that disappears",
+    detail: "Pipelines, automation, LLMs — woven into your product. Not bolted on as a feature.",
   },
   {
-    icon: Terminal,
-    title: "Production-grade code",
-    description:
-      "Clean, tested, documented. Your codebase is an asset you can hand to any senior engineer. No lock-in, no debt.",
+    number: "03",
+    title: "Code you can own",
+    detail: "Clean. Tested. Documented. Hand it to any engineer — they'll thank you.",
   },
   {
-    icon: GitBranch,
-    title: "Deliberate architecture",
-    description:
-      "Designed for what you need today, structured for what comes next. No premature optimization, no throwaway prototypes.",
+    number: "04",
+    title: "Built to evolve",
+    detail: "Right-sized architecture. No gold-plating. Scales when you need it, not before.",
   },
 ];
 
@@ -37,34 +32,27 @@ const PhilosophySection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="max-w-2xl mb-20"
+          className="mb-16"
         >
-          <span className="text-sm font-mono text-primary tracking-widest uppercase mb-4 block">
-            What I do
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-bright tracking-tight mb-4">
-            Outcomes, not deliverables.
+          <h2 className="text-3xl md:text-5xl font-bold text-bright tracking-tight">
+            What you get.
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            I build software that moves your business forward. AI is a multiplier
-            in my process — embedded quietly, not sold loudly.
-          </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-px bg-border/50 rounded-xl overflow-hidden">
+        <div className="space-y-0 border-t border-border">
           {outcomes.map((item, i) => (
             <motion.div
-              key={item.title}
+              key={item.number}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-card p-8 md:p-10 group"
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className="grid grid-cols-[auto_1fr] md:grid-cols-[60px_200px_1fr] gap-4 md:gap-8 items-baseline py-8 border-b border-border group"
             >
-              <item.icon className="w-5 h-5 text-primary/70 mb-5" />
-              <h3 className="text-lg font-semibold text-bright mb-2">{item.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {item.description}
+              <span className="text-xs font-mono text-primary/50">{item.number}</span>
+              <h3 className="text-lg md:text-xl font-semibold text-bright">{item.title}</h3>
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed col-start-2 md:col-start-3">
+                {item.detail}
               </p>
             </motion.div>
           ))}
