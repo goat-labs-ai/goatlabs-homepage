@@ -12,7 +12,7 @@ const WhyMeSection = () => {
   return (
     <section id="why" className="relative py-20 md:py-28">
       <div className="container px-6 md:px-8">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -27,7 +27,7 @@ const WhyMeSection = () => {
             </p>
           </motion.div>
 
-          <div className="space-y-5">
+          <div className="space-y-5 inline-block text-left">
             {points.map((point, i) => (
               <motion.div
                 key={i}

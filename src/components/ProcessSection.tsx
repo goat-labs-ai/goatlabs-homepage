@@ -40,7 +40,7 @@ const ProcessSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-10"
+          className="mb-10 text-center"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-bright tracking-tight mb-3">
             How it works.
@@ -56,7 +56,7 @@ const ProcessSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="rounded-lg border border-border bg-card/60 overflow-hidden max-w-2xl"
+          className="rounded-lg border border-border bg-card/60 overflow-hidden max-w-2xl mx-auto"
         >
           {/* Terminal header */}
           <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-border bg-secondary/30">
