@@ -71,12 +71,6 @@ const CompanyDetails = () => {
                 </div>
               </div>
 
-              <div className="h-px bg-border" />
-
-              {/* Tagline */}
-              <p className="text-xs text-muted-foreground/60 leading-relaxed">
-                GoatLabs. Build with internet.
-              </p>
             </div>
           </div>
         </div>

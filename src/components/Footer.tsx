@@ -10,9 +10,15 @@ const Footer = () => {
   return (
     <footer className="border-t border-border py-8">
       <div className="container px-6 md:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} GoatLabs. Built with precision.
-        </p>
+        <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} GoatLabs.
+          </p>
+          <span className="hidden sm:inline text-muted-foreground/30">·</span>
+          <p className="text-xs text-muted-foreground/50 font-mono">
+            Build with internet.
+          </p>
+        </div>
         <div className="flex items-center gap-5">
           {socials.map(({ label, icon: Icon, href }) => (
             <a
