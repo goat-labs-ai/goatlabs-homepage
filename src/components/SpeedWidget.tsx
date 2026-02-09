@@ -1,8 +1,12 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 
-const useAnimatedCounter = (target: number, duration: number, start: boolean) => {
-  const [count, setCount] = useState(0);
+// Total target: 61 min 33 sec = 3693 seconds
+const TARGET_SECONDS = 3693;
+const ANIM_DURATION = 2500; // ms
+
+const useAnimatedTime = (start: boolean) => {
+  const [totalSec, setTotalSec] = useState(0);
 
   useEffect(() => {
     if (!start) return;
@@ -11,10 +15,9 @@ const useAnimatedCounter = (target: number, duration: number, start: boolean) =>
 
     const step = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      // Ease out cubic
+      const progress = Math.min((timestamp - startTime) / ANIM_DURATION, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * target));
+      setTotalSec(Math.floor(eased * TARGET_SECONDS));
       if (progress < 1) {
         raf = requestAnimationFrame(step);
       }
@@ -22,9 +25,11 @@ const useAnimatedCounter = (target: number, duration: number, start: boolean) =>
 
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [target, duration, start]);
+  }, [start]);
 
-  return count;
+  const mins = Math.floor(totalSec / 60);
+  const secs = totalSec % 60;
+  return { mins, secs };
 };
 
 const stack = ["Custom React", "TypeScript", "Cloud infra", "CI/CD"];
@@ -32,7 +37,7 @@ const stack = ["Custom React", "TypeScript", "Cloud infra", "CI/CD"];
 const SpeedWidget = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const minutes = useAnimatedCounter(61, 2000, isInView);
+  const { mins, secs } = useAnimatedTime(isInView);
 
   return (
     <div ref={ref} className="py-16 md:py-24">
@@ -56,11 +61,15 @@ const SpeedWidget = () => {
 
             {/* Counter */}
             <div className="mb-6">
-              <div className="flex items-baseline gap-2">
+              <div className="flex items-baseline gap-1">
                 <span className="text-4xl md:text-5xl font-bold text-bright tabular-nums tracking-tight">
-                  {minutes}
+                  {String(mins).padStart(2, "0")}
                 </span>
-                <span className="text-sm text-muted-foreground">min</span>
+                <span className="text-lg text-muted-foreground font-normal">m</span>
+                <span className="text-4xl md:text-5xl font-bold text-bright tabular-nums tracking-tight ml-1">
+                  {String(secs).padStart(2, "0")}
+                </span>
+                <span className="text-lg text-muted-foreground font-normal">s</span>
               </div>
               <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
                 This page. From scratch. Somewhere between
