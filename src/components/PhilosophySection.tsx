@@ -32,14 +32,14 @@ const PhilosophySection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-10"
+          className="mb-10 text-center"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-bright tracking-tight">
             What you get.
           </h2>
         </motion.div>
 
-        <div className="space-y-0 border-t border-border">
+        <div className="space-y-0 border-t border-border max-w-3xl mx-auto">
           {outcomes.map((item, i) => (
             <motion.div
               key={item.number}

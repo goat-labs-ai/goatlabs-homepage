@@ -10,7 +10,7 @@ const CTASection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="max-w-xl"
+          className="max-w-xl mx-auto text-center"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-bright tracking-tight mb-5 leading-tight">
             Let's talk.

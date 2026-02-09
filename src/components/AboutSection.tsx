@@ -5,7 +5,7 @@ const AboutSection = () => {
   return (
     <section id="about" className="relative py-20 md:py-28">
       <div className="container px-6 md:px-8">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +31,7 @@ const AboutSection = () => {
               </p>
             </div>
 
-            <div className="mt-8 flex items-center gap-4">
+            <div className="mt-8 flex items-center justify-center gap-4">
               <a
                 href="https://linkedin.com"
                 target="_blank"
