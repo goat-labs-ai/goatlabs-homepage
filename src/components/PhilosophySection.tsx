@@ -1,24 +1,30 @@
 import { motion } from "framer-motion";
-import { Zap, Target, Shield } from "lucide-react";
+import { Cpu, TrendingUp, Sparkles, Code2 } from "lucide-react";
 
-const pillars = [
+const outcomes = [
   {
-    icon: Zap,
-    title: "Speed as strategy",
+    icon: TrendingUp,
+    title: "Launch faster",
     description:
-      "AI-augmented development means I ship production-ready software in weeks. Your competitive advantage starts on day one.",
+      "Go from idea to production in weeks. AI-augmented development compresses timelines without cutting corners.",
   },
   {
-    icon: Target,
-    title: "Founder-level alignment",
+    icon: Cpu,
+    title: "AI that works",
     description:
-      "No project managers, no handoffs. You work directly with a senior engineer who thinks about your business, not just your backlog.",
+      "Not chatbot demos — real AI integration. Automation, intelligent pipelines, and LLM-powered features that solve actual problems.",
   },
   {
-    icon: Shield,
-    title: "Craft over scale",
+    icon: Code2,
+    title: "Code you own",
     description:
-      "Boutique means intentional. Every line of code is deliberate, every architecture decision is yours to own long after we part ways.",
+      "Clean, documented, production-grade. Your codebase is an asset, not a liability. No vendor lock-in, ever.",
+  },
+  {
+    icon: Sparkles,
+    title: "Scale when ready",
+    description:
+      "Architecture designed for today's needs with tomorrow's growth in mind. Start lean, expand deliberately.",
   },
 ];
 
@@ -31,35 +37,34 @@ const PhilosophySection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="max-w-2xl mb-16"
+          className="max-w-2xl mb-20"
         >
           <span className="text-sm font-mono text-primary tracking-widest uppercase mb-4 block">
-            Philosophy
+            What I do
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-bright tracking-tight mb-4">
-            Not an agency. Not a factory.
+            Outcomes, not deliverables.
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            A strategic engineering partner who treats your product like their own.
+            I build software that moves your business forward — fast, clean, and with
+            AI as a genuine lever, not a buzzword on a slide.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {pillars.map((pillar, i) => (
+        <div className="grid sm:grid-cols-2 gap-px bg-border/50 rounded-xl overflow-hidden">
+          {outcomes.map((item, i) => (
             <motion.div
-              key={pillar.title}
-              initial={{ opacity: 0, y: 30 }}
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="group p-6 md:p-8 rounded-xl bg-card border border-border transition-all hover:glow-border"
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="bg-card p-8 md:p-10 group"
             >
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
-                <pillar.icon className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold text-bright mb-3">{pillar.title}</h3>
+              <item.icon className="w-5 h-5 text-primary mb-5 transition-transform group-hover:scale-110" />
+              <h3 className="text-lg font-semibold text-bright mb-2">{item.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                {pillar.description}
+                {item.description}
               </p>
             </motion.div>
           ))}
