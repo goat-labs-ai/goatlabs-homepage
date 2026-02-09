@@ -1,30 +1,30 @@
 import { motion } from "framer-motion";
-import { Cpu, TrendingUp, Sparkles, Code2 } from "lucide-react";
+import { ArrowUpRight, Layers, Terminal, GitBranch } from "lucide-react";
 
 const outcomes = [
   {
-    icon: TrendingUp,
-    title: "Launch faster",
+    icon: ArrowUpRight,
+    title: "Compressed timelines",
     description:
-      "Go from idea to production in weeks. AI-augmented development compresses timelines without cutting corners.",
+      "Weeks to production, not quarters. AI-augmented engineering eliminates busywork — what remains is focus and craft.",
   },
   {
-    icon: Cpu,
-    title: "AI that works",
+    icon: Layers,
+    title: "Intelligent systems",
     description:
-      "Not chatbot demos — real AI integration. Automation, intelligent pipelines, and LLM-powered features that solve actual problems.",
+      "LLM pipelines, retrieval architectures, decision automation. Applied AI that disappears into the product and makes it better.",
   },
   {
-    icon: Code2,
-    title: "Code you own",
+    icon: Terminal,
+    title: "Production-grade code",
     description:
-      "Clean, documented, production-grade. Your codebase is an asset, not a liability. No vendor lock-in, ever.",
+      "Clean, tested, documented. Your codebase is an asset you can hand to any senior engineer. No lock-in, no debt.",
   },
   {
-    icon: Sparkles,
-    title: "Scale when ready",
+    icon: GitBranch,
+    title: "Deliberate architecture",
     description:
-      "Architecture designed for today's needs with tomorrow's growth in mind. Start lean, expand deliberately.",
+      "Designed for what you need today, structured for what comes next. No premature optimization, no throwaway prototypes.",
   },
 ];
 
@@ -46,8 +46,8 @@ const PhilosophySection = () => {
             Outcomes, not deliverables.
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            I build software that moves your business forward — fast, clean, and with
-            AI as a genuine lever, not a buzzword on a slide.
+            I build software that moves your business forward. AI is a multiplier
+            in my process — embedded quietly, not sold loudly.
           </p>
         </motion.div>
 
@@ -61,7 +61,7 @@ const PhilosophySection = () => {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="bg-card p-8 md:p-10 group"
             >
-              <item.icon className="w-5 h-5 text-primary mb-5 transition-transform group-hover:scale-110" />
+              <item.icon className="w-5 h-5 text-primary/70 mb-5" />
               <h3 className="text-lg font-semibold text-bright mb-2">{item.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {item.description}
