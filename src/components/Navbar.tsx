@@ -11,7 +11,7 @@ const Navbar = () => {
     >
       <div className="container px-6 md:px-8 flex items-center justify-between h-16">
         <a href="#" className="flex items-center">
-          <img src={goatLabsLogo} alt="GoatLabs" className="h-8 brightness-0 invert" />
+          <img src={goatLabsLogo} alt="GoatLabs" className="h-12 brightness-0 invert" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
