@@ -1,25 +1,27 @@
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
+import { toast } from "@/hooks/use-toast";
 
 const CTASection = () => {
-  const [formState, setFormState] = useState({ message: "", email: "", file: null as File | null });
+  const [message, setMessage] = useState("");
+  const [email, setEmail] = useState("");
   const [fileName, setFileName] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: wire up to backend
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    toast({
+      title: "Message received",
+      description: "Thanks — I'll get back to you soon.",
+    });
+    setMessage("");
+    setEmail("");
+    setFileName("");
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      setFormState(prev => ({ ...prev, file }));
-      setFileName(file.name);
-    }
+    if (file) setFileName(file.name);
   };
 
   return (
@@ -41,30 +43,25 @@ const CTASection = () => {
             No pitch deck required. A napkin sketch works too.
           </p>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <textarea
-                placeholder="What's on your mind?"
-                value={formState.message}
-                onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))}
-                required
-                rows={4}
-                className="w-full rounded-lg border border-border bg-card/40 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary/30 resize-none font-mono transition-colors"
-              />
-            </div>
+            <textarea
+              placeholder="What's on your mind?"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
+              rows={4}
+              className="w-full rounded-lg border border-border bg-card/40 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary/30 resize-none font-mono transition-colors"
+            />
 
             <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
                 placeholder="your@email.com"
-                value={formState.email}
-                onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 className="flex-1 rounded-lg border border-border bg-card/40 px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary/30 font-mono transition-colors"
               />
-
-              {/* File upload */}
               <button
                 type="button"
                 onClick={() => fileRef.current?.click()}
@@ -83,10 +80,9 @@ const CTASection = () => {
 
             <button
               type="submit"
-              disabled={submitted}
-              className="w-full sm:w-auto rounded-lg bg-primary text-primary-foreground px-8 py-2.5 text-sm font-semibold transition-all hover:shadow-[0_0_40px_-10px_hsl(var(--primary)/0.4)] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60"
+              className="w-full sm:w-auto rounded-lg bg-primary text-primary-foreground px-8 py-2.5 text-sm font-semibold transition-all hover:shadow-[0_0_40px_-10px_hsl(var(--primary)/0.4)] hover:scale-[1.01] active:scale-[0.99]"
             >
-              {submitted ? "Sent ✓" : "Send it"}
+              Send it
             </button>
           </form>
 
