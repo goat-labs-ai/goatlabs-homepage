@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const TransitionSection = () => {
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden">
+    <section className="relative py-14 md:py-20 overflow-hidden">
       <div className="container px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0 }}
@@ -16,7 +16,7 @@ const TransitionSection = () => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="w-12 h-px bg-primary mx-auto mb-8"
+            className="w-12 h-px bg-primary mx-auto mb-6"
           />
 
           <p className="text-2xl md:text-3xl text-bright font-bold tracking-tight leading-snug">

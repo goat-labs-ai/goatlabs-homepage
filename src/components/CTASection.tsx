@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 const CTASection = () => {
   return (
-    <section id="contact" className="relative py-32 md:py-44">
+    <section id="contact" className="relative py-24 md:py-32">
       <div className="container px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -12,11 +12,11 @@ const CTASection = () => {
           transition={{ duration: 0.8 }}
           className="max-w-xl"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-bright tracking-tight mb-6 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-bright tracking-tight mb-5 leading-tight">
             Let's talk.
           </h2>
 
-          <p className="text-muted-foreground text-base mb-10">
+          <p className="text-muted-foreground text-sm mb-8">
             No pitch. No funnel. Just a conversation about what you're building.
           </p>
 

@@ -5,6 +5,7 @@ import PhilosophySection from "@/components/PhilosophySection";
 import ProcessSection from "@/components/ProcessSection";
 import WhyMeSection from "@/components/WhyMeSection";
 import SpeedWidget from "@/components/SpeedWidget";
+import AboutSection from "@/components/AboutSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -21,6 +22,8 @@ const Index = () => {
       <div className="section-divider mx-auto max-w-5xl" />
       <WhyMeSection />
       <SpeedWidget />
+      <div className="section-divider mx-auto max-w-5xl" />
+      <AboutSection />
       <div className="section-divider mx-auto max-w-5xl" />
       <CTASection />
       <Footer />

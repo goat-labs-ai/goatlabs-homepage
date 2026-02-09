@@ -1,15 +1,16 @@
 import { motion } from "framer-motion";
 
 const points = [
-  "CTO-level. Every line, every decision.",
-  "Boutique. Few clients, full attention.",
-  "I challenge your ideas. Then I build them better.",
-  "No bloat. No premature architecture. Pragmatism.",
+  "Founder-led. Every line of code, every architectural decision.",
+  "Boutique by design. Few clients, full attention.",
+  "I challenge your ideas — then build them better.",
+  "No bloat. No premature architecture. Pragmatism first.",
+  "When scale demands it, I bring in trusted specialists.",
 ];
 
 const WhyMeSection = () => {
   return (
-    <section id="why" className="relative py-28 md:py-36">
+    <section id="why" className="relative py-20 md:py-28">
       <div className="container px-6 md:px-8">
         <div className="max-w-3xl">
           <motion.div
@@ -18,15 +19,15 @@ const WhyMeSection = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-bright tracking-tight mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-bright tracking-tight mb-3">
               Not an agency.
             </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12">
-              One senior engineer who ships like a founder.
+            <p className="text-lg md:text-xl text-muted-foreground mb-10">
+              A senior engineer who ships like a founder — with a network to scale when needed.
             </p>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {points.map((point, i) => (
               <motion.div
                 key={i}
@@ -37,7 +38,7 @@ const WhyMeSection = () => {
                 className="flex items-start gap-4"
               >
                 <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
-                <p className="text-base md:text-lg text-foreground/90 leading-relaxed">{point}</p>
+                <p className="text-sm md:text-base text-foreground/90 leading-relaxed">{point}</p>
               </motion.div>
             ))}
           </div>

@@ -3,36 +3,36 @@ import { motion } from "framer-motion";
 const outcomes = [
   {
     number: "01",
-    title: "Ship in weeks",
-    detail: "Idea → production. AI compresses the timeline. You move while competitors plan.",
+    title: "Launch in weeks, not quarters",
+    detail: "From idea to production. AI compresses timelines. Move while competitors plan.",
   },
   {
     number: "02",
-    title: "AI that disappears",
+    title: "AI that works invisibly",
     detail: "Pipelines, automation, LLMs — woven into your product. Not bolted on as a feature.",
   },
   {
     number: "03",
-    title: "Code you can own",
+    title: "A codebase you actually own",
     detail: "Clean. Tested. Documented. Hand it to any engineer — they'll thank you.",
   },
   {
     number: "04",
-    title: "Built to evolve",
-    detail: "Right-sized architecture. No gold-plating. Scales when you need it, not before.",
+    title: "Architecture that grows with you",
+    detail: "Right-sized for today. Scales when revenue demands it, not before.",
   },
 ];
 
 const PhilosophySection = () => {
   return (
-    <section id="approach" className="relative py-28 md:py-36">
+    <section id="approach" className="relative py-20 md:py-28">
       <div className="container px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-10"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-bright tracking-tight">
             What you get.
@@ -47,7 +47,7 @@ const PhilosophySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="grid grid-cols-[auto_1fr] md:grid-cols-[60px_200px_1fr] gap-4 md:gap-8 items-baseline py-8 border-b border-border group"
+              className="grid grid-cols-[auto_1fr] md:grid-cols-[60px_220px_1fr] gap-4 md:gap-8 items-baseline py-6 border-b border-border group"
             >
               <span className="text-xs font-mono text-primary/50">{item.number}</span>
               <h3 className="text-lg md:text-xl font-semibold text-bright">{item.title}</h3>

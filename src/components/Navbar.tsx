@@ -15,13 +15,17 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {["Approach", "Services", "Process"].map((item) => (
+          {[
+            { label: "Approach", href: "#approach" },
+            { label: "Process", href: "#process" },
+            { label: "About", href: "#about" },
+          ].map((item) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.label}
+              href={item.href}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
