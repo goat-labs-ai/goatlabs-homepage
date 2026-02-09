@@ -1,8 +1,9 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import TransitionSection from "@/components/TransitionSection";
 import PhilosophySection from "@/components/PhilosophySection";
-import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
+import WhyMeSection from "@/components/WhyMeSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -11,12 +12,13 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
+      <TransitionSection />
       <div className="section-divider mx-auto max-w-5xl" />
       <PhilosophySection />
       <div className="section-divider mx-auto max-w-5xl" />
-      <ServicesSection />
-      <div className="section-divider mx-auto max-w-5xl" />
       <ProcessSection />
+      <div className="section-divider mx-auto max-w-5xl" />
+      <WhyMeSection />
       <div className="section-divider mx-auto max-w-5xl" />
       <CTASection />
       <Footer />

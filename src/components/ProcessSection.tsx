@@ -1,25 +1,38 @@
 import { motion } from "framer-motion";
+import { MessageSquare, Compass, Hammer, Rocket } from "lucide-react";
 
 const steps = [
   {
+    icon: MessageSquare,
     number: "01",
-    title: "Discovery call",
-    description: "30-minute conversation to understand your problem, constraints, and goals. No fluff.",
+    title: "Conversation",
+    duration: "Day 1",
+    description:
+      "A direct, 30-minute call. I listen to your problem, ask the right questions, and tell you honestly if I'm the right fit.",
   },
   {
+    icon: Compass,
     number: "02",
-    title: "Scope & proposal",
-    description: "A clear, honest breakdown of what I'll build, how long it takes, and what it costs. Fixed scope, no surprises.",
+    title: "Scope & clarity",
+    duration: "Day 2–3",
+    description:
+      "A clear proposal: what gets built, what it costs, and when it ships. No ambiguity, no hidden layers.",
   },
   {
+    icon: Hammer,
     number: "03",
     title: "Build sprint",
-    description: "Rapid, focused execution. Daily async updates, weekly demos. You see progress in real time.",
+    duration: "Weeks, not months",
+    description:
+      "Focused, AI-augmented execution. You see working software every week — not decks, not wireframes.",
   },
   {
+    icon: Rocket,
     number: "04",
-    title: "Ship & handoff",
-    description: "Production deployment, documentation, and knowledge transfer. Your product, fully yours.",
+    title: "Ship & own",
+    duration: "Handoff day",
+    description:
+      "Production deployment, documentation, knowledge transfer. It's your product — fully yours, no strings attached.",
   },
 ];
 
@@ -32,43 +45,46 @@ const ProcessSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="max-w-2xl mb-16"
+          className="max-w-2xl mb-20"
         >
           <span className="text-sm font-mono text-primary tracking-widest uppercase mb-4 block">
-            Process
+            How I work
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-bright tracking-tight mb-4">
-            Simple. Transparent. Fast.
+            One person. Zero overhead.
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Four steps from first conversation to shipped product.
+            You talk to the same person who architects, builds, and ships your product.
+            No handoffs, no telephone game.
           </p>
         </motion.div>
 
-        <div className="relative max-w-3xl">
-          {/* Vertical line */}
-          <div className="absolute left-[23px] top-4 bottom-4 w-px bg-border hidden md:block" />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              className="relative p-6 rounded-xl bg-card border border-border group hover:glow-border transition-all"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-xs font-mono text-primary/60">{step.number}</span>
+                <span className="text-xs font-mono text-muted-foreground">{step.duration}</span>
+              </div>
+              <step.icon className="w-5 h-5 text-primary mb-4" />
+              <h3 className="text-base font-semibold text-bright mb-2">{step.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {step.description}
+              </p>
 
-          <div className="space-y-8 md:space-y-12">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="flex gap-6 items-start"
-              >
-                <div className="relative z-10 w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center shrink-0">
-                  <span className="text-sm font-mono text-primary font-semibold">{step.number}</span>
-                </div>
-                <div className="pt-2">
-                  <h3 className="text-lg font-semibold text-bright mb-1">{step.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              {/* Connector line on larger screens */}
+              {i < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-border" />
+              )}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
