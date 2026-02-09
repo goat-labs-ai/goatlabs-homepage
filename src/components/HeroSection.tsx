@@ -74,9 +74,9 @@ const HeroSection = () => {
             transition={{ delay: 0.4, duration: 0.7 }}
             className="text-base md:text-lg text-foreground/80 max-w-xl mx-auto mb-8 leading-relaxed drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]"
           >
-            AI-powered software, built at founder speed.
+            Senior engineering, amplified by AI.
             <br className="hidden sm:block" />
-            Real business impact — shipped in weeks, not months.
+            Production software — shipped in weeks, not months.
           </motion.p>
 
           <motion.div

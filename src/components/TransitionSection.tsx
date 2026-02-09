@@ -27,10 +27,10 @@ const TransitionSection = () => {
             className="w-16 h-px bg-primary mx-auto mb-10"
           />
 
-          <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed font-light">
-            Mountains teach patience and precision.
+          <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed font-light tracking-wide">
+            The hard problems don't need more people.
             <br className="hidden sm:block" />
-            <span className="text-bright font-normal">I bring both to every line of code.</span>
+            <span className="text-bright font-normal">They need the right engineer.</span>
           </p>
 
           <motion.div
