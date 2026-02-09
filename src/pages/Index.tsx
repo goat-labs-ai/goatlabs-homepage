@@ -7,6 +7,7 @@ import WhyMeSection from "@/components/WhyMeSection";
 import SpeedWidget from "@/components/SpeedWidget";
 import AboutSection from "@/components/AboutSection";
 import CTASection from "@/components/CTASection";
+import CompanyDetails from "@/components/CompanyDetails";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -26,6 +27,8 @@ const Index = () => {
       <AboutSection />
       <div className="section-divider mx-auto max-w-5xl" />
       <CTASection />
+      <div className="section-divider mx-auto max-w-5xl" />
+      <CompanyDetails />
       <Footer />
     </div>
   );
