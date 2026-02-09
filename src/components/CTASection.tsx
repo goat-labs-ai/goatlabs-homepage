@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import { toast } from "@/hooks/use-toast";
+import { useLang } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
 
 const CTASection = () => {
+  const { t } = useLang();
+  const c = translations.cta;
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const [fileName, setFileName] = useState("");
@@ -11,8 +15,8 @@ const CTASection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Message received",
-      description: "Thanks — I'll get back to you soon.",
+      title: t(c.toastTitle),
+      description: t(c.toastDesc),
     });
     setMessage("");
     setEmail("");
@@ -35,17 +39,17 @@ const CTASection = () => {
           className="max-w-xl mx-auto"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-bright tracking-tight mb-3">
-            Let's talk.
+            {t(c.title)}
           </h2>
           <p className="text-muted-foreground text-sm mb-10 leading-relaxed">
-            Tell me what you're building — or send a link to something you like.
+            {t(c.sub1)}
             <br className="hidden sm:block" />
-            No pitch deck required. A napkin sketch works too.
+            {t(c.sub2)}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <textarea
-              placeholder="What's on your mind?"
+              placeholder={t(c.placeholder)}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
@@ -56,7 +60,7 @@ const CTASection = () => {
             <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
-                placeholder="your@email.com"
+                placeholder={t(c.email)}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -67,7 +71,7 @@ const CTASection = () => {
                 onClick={() => fileRef.current?.click()}
                 className="rounded-lg border border-border bg-card/40 px-4 py-2.5 text-xs text-muted-foreground hover:text-foreground hover:border-primary/20 transition-colors font-mono truncate max-w-[200px]"
               >
-                {fileName || "attach file"}
+                {fileName || t(c.attachFile)}
               </button>
               <input
                 ref={fileRef}
@@ -82,27 +86,20 @@ const CTASection = () => {
               type="submit"
               className="w-full sm:w-auto rounded-lg bg-primary text-primary-foreground px-8 py-2.5 text-sm font-semibold transition-all hover:shadow-[0_0_40px_-10px_hsl(var(--primary)/0.4)] hover:scale-[1.01] active:scale-[0.99]"
             >
-              Send it
+              {t(c.send)}
             </button>
           </form>
 
-          {/* Alt contact */}
           <div className="mt-10 pt-6 border-t border-border/50">
             <p className="text-xs text-muted-foreground/60 mb-3 font-mono">
-              # if you don't like forms
+              {t(c.altIntro)}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 text-xs font-mono">
-              <a
-                href="mailto:hello@goatlabs.dev"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
+              <a href="mailto:hello@goatlabs.dev" className="text-muted-foreground hover:text-primary transition-colors">
                 hello@goatlabs.dev
               </a>
               <span className="hidden sm:inline text-muted-foreground/30">·</span>
-              <a
-                href="tel:+48000000000"
-                className="text-muted-foreground hover:text-primary transition-colors tabular-nums"
-              >
+              <a href="tel:+48000000000" className="text-muted-foreground hover:text-primary transition-colors tabular-nums">
                 +48 000 000 000
               </a>
             </div>

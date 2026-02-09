@@ -1,7 +1,18 @@
 import { motion } from "framer-motion";
 import goatLabsLogo from "@/assets/goat-labs-logo.png";
+import { useLang } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
 
 const Navbar = () => {
+  const { lang, toggleLang, t } = useLang();
+  const nav = translations.nav;
+
+  const links = [
+    { label: t(nav.approach), href: "#approach" },
+    { label: t(nav.process), href: "#process" },
+    { label: t(nav.about), href: "#about" },
+  ];
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -15,11 +26,7 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {[
-            { label: "Approach", href: "#approach" },
-            { label: "Process", href: "#process" },
-            { label: "About", href: "#about" },
-          ].map((item) => (
+          {links.map((item) => (
             <a
               key={item.label}
               href={item.href}
@@ -30,12 +37,24 @@ const Navbar = () => {
           ))}
         </div>
 
-        <a
-          href="#contact"
-          className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-        >
-          Let's talk →
-        </a>
+        <div className="flex items-center gap-5">
+          {/* Language switcher */}
+          <button
+            onClick={toggleLang}
+            className="text-xs font-mono text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+          >
+            <span className={lang === "en" ? "text-foreground" : "text-muted-foreground/50"}>EN</span>
+            <span className="text-muted-foreground/30">/</span>
+            <span className={lang === "pl" ? "text-foreground" : "text-muted-foreground/50"}>PL</span>
+          </button>
+
+          <a
+            href="#contact"
+            className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+          >
+            {t(nav.letsTalk)}
+          </a>
+        </div>
       </div>
     </motion.nav>
   );
