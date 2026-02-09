@@ -1,4 +1,6 @@
 import { Linkedin, Github, Twitter } from "lucide-react";
+import { useLang } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
 
 const socials = [
   { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com" },
@@ -7,6 +9,8 @@ const socials = [
 ];
 
 const Footer = () => {
+  const { t } = useLang();
+
   return (
     <footer className="border-t border-border py-8">
       <div className="container px-6 md:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -16,7 +20,7 @@ const Footer = () => {
           </p>
           <span className="hidden sm:inline text-muted-foreground/30">·</span>
           <p className="text-xs text-muted-foreground/50 font-mono">
-            Build with internet.
+            {t(translations.footer.tagline)}
           </p>
         </div>
         <div className="flex items-center gap-5">

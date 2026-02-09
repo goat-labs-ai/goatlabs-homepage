@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
+import { useLang } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
 
 const TransitionSection = () => {
+  const { t } = useLang();
+  const tr = translations.transition;
+
   return (
     <section className="relative py-14 md:py-20 overflow-hidden">
       <div className="container px-6 md:px-8">
@@ -18,11 +23,10 @@ const TransitionSection = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="w-12 h-px bg-primary mx-auto mb-6"
           />
-
           <p className="text-2xl md:text-3xl text-bright font-bold tracking-tight leading-snug">
-            Hard problems. One engineer.
+            {t(tr.headline)}
             <br />
-            <span className="text-muted-foreground font-normal text-lg md:text-xl">No committee required.</span>
+            <span className="text-muted-foreground font-normal text-lg md:text-xl">{t(tr.sub)}</span>
           </p>
         </motion.div>
       </div>
