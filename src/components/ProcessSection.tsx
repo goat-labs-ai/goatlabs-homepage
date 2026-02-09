@@ -1,56 +1,102 @@
 import { motion } from "framer-motion";
 
 const steps = [
-  { label: "Talk", time: "Day 1", note: "30 min. Your problem, my questions." },
-  { label: "Scope", time: "Day 2–3", note: "What, when, how much. No ambiguity." },
-  { label: "Build", time: "Weeks", note: "Working software every week. Not decks." },
-  { label: "Ship", time: "Done", note: "Yours. Deployed, documented, handed off." },
+  {
+    cmd: "init",
+    status: "✓",
+    label: "Discovery call",
+    detail: "30 min. Your problem, my questions. No fluff.",
+    time: "Day 1",
+  },
+  {
+    cmd: "scope",
+    status: "✓",
+    label: "Scope & estimate",
+    detail: "What, when, how much. Written. No ambiguity.",
+    time: "Day 2–3",
+  },
+  {
+    cmd: "build",
+    status: "✓",
+    label: "Build in sprints",
+    detail: "Working software every week. Not decks.",
+    time: "Weeks",
+  },
+  {
+    cmd: "deploy",
+    status: "✓",
+    label: "Ship & hand off",
+    detail: "Yours. Deployed, documented, transferred.",
+    time: "Done",
+  },
 ];
 
 const ProcessSection = () => {
   return (
-    <section id="process" className="relative py-28 md:py-36">
+    <section id="process" className="relative py-20 md:py-28">
       <div className="container px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-10"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-bright tracking-tight mb-3">
             How it works.
           </h2>
-          <p className="text-muted-foreground text-base">
-            Same person architects, builds, and ships. No layers.
+          <p className="text-muted-foreground text-sm font-mono">
+            Same person architects, builds, and ships.
           </p>
         </motion.div>
 
-        {/* Horizontal visual timeline */}
-        <div className="relative">
-          {/* Connector line */}
-          <div className="hidden md:block absolute top-6 left-0 right-0 h-px bg-border" />
+        {/* Terminal build-log */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+          className="rounded-lg border border-border bg-card/60 overflow-hidden max-w-2xl"
+        >
+          {/* Terminal header */}
+          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-border bg-secondary/30">
+            <div className="w-2 h-2 rounded-full bg-destructive/50" />
+            <div className="w-2 h-2 rounded-full bg-primary/40" />
+            <div className="w-2 h-2 rounded-full bg-green-500/40" />
+            <span className="text-[10px] text-muted-foreground ml-2 font-mono">
+              goatlabs exec --project=yours
+            </span>
+          </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {/* Log entries */}
+          <div className="font-mono text-sm">
             {steps.map((step, i) => (
               <motion.div
-                key={step.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative"
+                key={step.cmd}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.15 + i * 0.12 }}
+                className="flex items-start gap-3 px-4 py-3 border-b border-border/50 last:border-b-0 hover:bg-secondary/20 transition-colors"
               >
-                {/* Dot */}
-                <div className="hidden md:block w-3 h-3 rounded-full bg-primary/80 border-2 border-background mb-6" />
-
-                <span className="text-xs font-mono text-primary/60 block mb-2">{step.time}</span>
-                <h3 className="text-xl font-bold text-bright mb-1">{step.label}</h3>
-                <p className="text-muted-foreground text-sm">{step.note}</p>
+                <span className="text-primary/80 mt-0.5 shrink-0">{step.status}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2 flex-wrap">
+                    <span className="text-primary/70 text-xs">{step.cmd}</span>
+                    <span className="text-bright text-sm">{step.label}</span>
+                    <span className="text-muted-foreground/50 text-[10px] ml-auto shrink-0">{step.time}</span>
+                  </div>
+                  <p className="text-muted-foreground text-xs mt-0.5">{step.detail}</p>
+                </div>
               </motion.div>
             ))}
           </div>
-        </div>
+
+          {/* Blinking cursor line */}
+          <div className="px-4 py-2.5 text-xs text-muted-foreground/40 font-mono">
+            <span className="animate-pulse text-primary/60">▋</span> ready
+          </div>
+        </motion.div>
       </div>
     </section>
   );
