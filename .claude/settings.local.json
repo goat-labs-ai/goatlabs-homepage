@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for file in components/Navbar.tsx components/HeroSection.tsx components/TransitionSection.tsx components/PhilosophySection.tsx components/ProcessSection.tsx components/WhyMeSection.tsx components/SpeedWidget.tsx components/AboutSection.tsx components/CTASection.tsx components/CompanyDetails.tsx components/Footer.tsx components/NavLink.tsx)",
+      "Bash(do)",
+      "Bash(if [ -f \"$file\" ])",
+      "Bash(! grep -q '\"\"use client\"\"' \"$file\")",
+      "Bash(then)",
+      "Read(//Users/michalkozlowski/Projects/goatlabs-homepage/**)",
+      "Bash(npm install:*)",
+      "Bash(timeout 20 npm run dev:*)",
+      "Bash(npm run build:*)"
+    ]
+  }
+}

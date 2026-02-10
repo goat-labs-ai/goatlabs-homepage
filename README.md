@@ -1,40 +1,37 @@
-# Welcome to your Lovable project
+# GoatLabs Homepage
 
-## Project info
+A Next.js App Router project with TypeScript, Tailwind CSS, and shadcn/ui components.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Getting Started
 
-## How can I edit this code?
+### Prerequisites
 
-There are several ways of editing your application.
+- Node.js 18+ installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- npm or yarn package manager
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# Navigate to the project directory
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Copy environment variables
+cp .env.example .env.local
+
+# Configure your environment variables in .env.local
+# See "Environment Variables" section below
+
+# Start the development server
 npm run dev
 ```
+
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
 **Edit a file directly in GitHub**
 
@@ -50,24 +47,83 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+## Environment Variables
 
-This project is built with:
+Before deploying or running in production, configure the following environment variables in `.env.local`:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Required Configuration
 
-## How can I deploy this project?
+```env
+# Contact Information
+NEXT_PUBLIC_CONTACT_EMAIL=your@email.com
+NEXT_PUBLIC_CONTACT_PHONE=+48123456789
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+# Company Details
+NEXT_PUBLIC_COMPANY_NAME=Your Company Name
+NEXT_PUBLIC_COMPANY_ADDRESS=Your Address
+NEXT_PUBLIC_COMPANY_NIP=123-456-78-90
+NEXT_PUBLIC_COMPANY_REGON=123456789
 
-## Can I connect a custom domain to my Lovable project?
+# Social Media URLs
+NEXT_PUBLIC_SOCIAL_LINKEDIN=https://linkedin.com/in/yourprofile
+NEXT_PUBLIC_SOCIAL_GITHUB=https://github.com/yourprofile
+NEXT_PUBLIC_SOCIAL_TWITTER=https://twitter.com/yourprofile
+```
 
-Yes, you can!
+⚠️ **Important**: Never commit `.env.local` to version control. Use `.env.example` as a template.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Project Structure
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```
+├── app/                  # Next.js App Router pages
+│   ├── layout.tsx       # Root layout
+│   ├── page.tsx         # Homepage
+│   ├── providers.tsx    # Client-side providers
+│   └── not-found.tsx    # 404 page
+├── components/          # React components
+│   └── ui/             # shadcn/ui components
+├── hooks/              # Custom React hooks
+├── i18n/               # Internationalization (EN/PL)
+├── lib/                # Utility functions and config
+│   ├── env.ts         # Environment variables
+│   └── validations.ts # Zod schemas
+└── assets/             # Static assets (images, fonts)
+```
+
+## Technologies
+
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Re-usable component library
+- **Framer Motion** - Animation library
+- **Zod** - Schema validation
+- **TanStack Query** - Data fetching
+
+## Available Scripts
+
+```sh
+npm run dev      # Start development server
+npm run build    # Build for production
+npm start        # Start production server
+npm run lint     # Run ESLint
+```
+
+## Deployment
+
+This Next.js application can be deployed to:
+
+- **Vercel** (recommended) - Zero-config deployment
+- **Netlify** - Supports Next.js with edge functions
+- **Docker** - Use the standalone output mode (already configured)
+
+### Vercel Deployment
+
+1. Push your code to GitHub
+2. Import your repository on [Vercel](https://vercel.com)
+3. Configure environment variables in Vercel dashboard
+4. Deploy
+
+### Environment Variables in Production
+
+Make sure to set all required environment variables in your hosting platform's dashboard before deploying.
