@@ -9,7 +9,8 @@
       "Read(//Users/michalkozlowski/Projects/goatlabs-homepage/**)",
       "Bash(npm install:*)",
       "Bash(timeout 20 npm run dev:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(curl:*)"
     ]
   }
 }
