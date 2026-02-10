@@ -54,6 +54,11 @@ Before deploying or running in production, configure the following environment v
 ### Required Configuration
 
 ```env
+# Email Service (Resend) - Required for contact form
+RESEND_API_KEY=re_your_api_key_here
+EMAIL_FROM=noreply@yourdomain.com
+EMAIL_TO=your@email.com
+
 # Contact Information
 NEXT_PUBLIC_CONTACT_EMAIL=your@email.com
 NEXT_PUBLIC_CONTACT_PHONE=+48123456789
@@ -69,6 +74,17 @@ NEXT_PUBLIC_SOCIAL_LINKEDIN=https://linkedin.com/in/yourprofile
 NEXT_PUBLIC_SOCIAL_GITHUB=https://github.com/yourprofile
 NEXT_PUBLIC_SOCIAL_TWITTER=https://twitter.com/yourprofile
 ```
+
+#### Email Configuration
+
+The contact form uses [Resend](https://resend.com) for email delivery:
+
+1. Sign up for a free account at [resend.com](https://resend.com)
+2. Verify your domain or use their test domain
+3. Generate an API key from the dashboard
+4. Set `RESEND_API_KEY` in your environment
+5. Configure `EMAIL_FROM` (must be a verified domain)
+6. Set `EMAIL_TO` (where form submissions go)
 
 ⚠️ **Important**: Never commit `.env.local` to version control. Use `.env.example` as a template.
 

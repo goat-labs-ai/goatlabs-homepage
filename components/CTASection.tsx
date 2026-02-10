@@ -5,8 +5,8 @@ import { useState, useRef } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
-import { contactFormSchema } from "@/lib/validations";
 import { env } from "@/lib/env";
+import { sendContactEmail } from "@/app/actions/send-email";
 
 const CTASection = () => {
   const { t } = useLang();
@@ -14,37 +14,46 @@ const CTASection = () => {
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const [fileName, setFileName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-    const file = fileRef.current?.files?.[0];
-    const result = contactFormSchema.safeParse({
-      message,
-      email,
-      file,
-    });
+    try {
+      const formData = new FormData(e.currentTarget);
+      const result = await sendContactEmail(formData);
 
-    if (!result.success) {
-      const firstError = result.error.errors[0];
+      if (!result.success) {
+        toast({
+          title: "Error",
+          description: result.error || "Failed to send message",
+          variant: "destructive",
+        });
+        return;
+      }
+
       toast({
-        title: "Validation Error",
-        description: firstError.message,
+        title: t(c.toastTitle),
+        description: t(c.toastDesc),
+      });
+
+      // Clear form
+      setMessage("");
+      setEmail("");
+      setFileName("");
+      if (fileRef.current) {
+        fileRef.current.value = "";
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred",
         variant: "destructive",
       });
-      return;
-    }
-
-    toast({
-      title: t(c.toastTitle),
-      description: t(c.toastDesc),
-    });
-    setMessage("");
-    setEmail("");
-    setFileName("");
-    if (fileRef.current) {
-      fileRef.current.value = "";
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -74,6 +83,7 @@ const CTASection = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <textarea
+              name="message"
               placeholder={t(c.placeholder)}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -85,6 +95,7 @@ const CTASection = () => {
             <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
+                name="email"
                 placeholder={t(c.email)}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -100,6 +111,7 @@ const CTASection = () => {
               </button>
               <input
                 ref={fileRef}
+                name="file"
                 type="file"
                 onChange={handleFileChange}
                 className="hidden"
@@ -109,9 +121,10 @@ const CTASection = () => {
 
             <button
               type="submit"
-              className="w-full sm:w-auto rounded-lg bg-primary text-primary-foreground px-8 py-2.5 text-sm font-semibold transition-all hover:shadow-[0_0_40px_-10px_hsl(var(--primary)/0.4)] hover:scale-[1.01] active:scale-[0.99]"
+              disabled={isSubmitting}
+              className="w-full sm:w-auto rounded-lg bg-primary text-primary-foreground px-8 py-2.5 text-sm font-semibold transition-all hover:shadow-[0_0_40px_-10px_hsl(var(--primary)/0.4)] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
-              {t(c.send)}
+              {isSubmitting ? "Sending..." : t(c.send)}
             </button>
           </form>
 
