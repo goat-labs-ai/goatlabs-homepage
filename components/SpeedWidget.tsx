@@ -39,6 +39,11 @@ const SpeedWidget = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { mins, secs } = useAnimatedTime(isInView);
+  const [iframeUrl, setIframeUrl] = useState("");
+
+  useEffect(() => {
+    setIframeUrl(window.location.href.split("#")[0]);
+  }, []);
 
   const descLines = t(s.description).split("\n");
 
@@ -110,13 +115,15 @@ const SpeedWidget = () => {
                 <span className="text-[10px] text-muted-foreground font-mono">{t(s.preview)}</span>
               </div>
               <div className="rounded-md border border-border overflow-hidden bg-background">
-                <iframe
-                  src={window.location.href.split("#")[0]}
-                  title="This page — live preview"
-                  className="w-full h-48 md:h-56 pointer-events-none"
-                  loading="lazy"
-                  sandbox=""
-                />
+                {iframeUrl && (
+                  <iframe
+                    src={iframeUrl}
+                    title="This page — live preview"
+                    className="w-full h-48 md:h-56 pointer-events-none"
+                    loading="lazy"
+                    sandbox=""
+                  />
+                )}
               </div>
               <p className="text-[10px] text-muted-foreground/40 mt-2 font-mono">
                 {t(s.previewNote)}
