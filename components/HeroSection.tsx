@@ -3,17 +3,23 @@
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import heroGoat from "@/assets/hero-goat.webp";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const HeroSection = () => {
   const { t } = useLang();
   const h = translations.hero;
+  const prefersReducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
+    // Skip parallax scroll effect if user prefers reduced motion
+    if (prefersReducedMotion) return;
+
     const handleScroll = () => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
@@ -23,12 +29,13 @@ const HeroSection = () => {
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [prefersReducedMotion]);
 
-  const imgOffset = scrollY * 0.4;
-  const imgScale = 1 + scrollY * 0.0003;
-  const textOffset = scrollY * 0.6;
-  const textOpacity = Math.max(0, 1 - scrollY / 500);
+  // Apply parallax only if motion is not reduced
+  const imgOffset = prefersReducedMotion ? 0 : scrollY * 0.4;
+  const imgScale = prefersReducedMotion ? 1 : 1 + scrollY * 0.0003;
+  const textOffset = prefersReducedMotion ? 0 : scrollY * 0.6;
+  const textOpacity = prefersReducedMotion ? 1 : Math.max(0, 1 - scrollY / 500);
 
   return (
     <section ref={sectionRef} className="relative h-screen overflow-hidden">
@@ -36,7 +43,15 @@ const HeroSection = () => {
         className="absolute inset-0 will-change-transform"
         style={{ transform: `translate3d(0, ${imgOffset}px, 0) scale(${imgScale})` }}
       >
-        <img src={heroGoat.src} alt="Mountain goat standing confidently on a rocky peak" className="w-full h-full object-cover object-center" loading="eager" />
+        <Image
+          src={heroGoat}
+          alt="Mountain goat standing confidently on a rocky peak"
+          fill
+          priority
+          quality={90}
+          sizes="100vw"
+          className="object-cover object-center"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/20" />
       </div>
 
@@ -45,9 +60,13 @@ const HeroSection = () => {
         style={{ transform: `translate3d(0, -${textOffset}px, 0)`, opacity: textOpacity }}
       >
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { duration: 1, ease: [0.16, 1, 0.3, 1] }
+          }
           className="text-center px-6 max-w-3xl"
         >
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-5 drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]">
@@ -57,9 +76,11 @@ const HeroSection = () => {
           </h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.7 }}
+            transition={
+              prefersReducedMotion ? { duration: 0 } : { delay: 0.4, duration: 0.7 }
+            }
             className="text-base md:text-lg text-foreground/80 max-w-xl mx-auto mb-8 leading-relaxed drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]"
           >
             {t(h.sub1)}
@@ -68,9 +89,11 @@ const HeroSection = () => {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
+            transition={
+              prefersReducedMotion ? { duration: 0 } : { delay: 0.7, duration: 0.6 }
+            }
           >
             <a
               href="#contact"

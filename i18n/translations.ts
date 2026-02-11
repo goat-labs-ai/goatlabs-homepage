@@ -15,8 +15,8 @@ export const translations = {
     cta: { en: "Start a conversation", pl: "Rozpocznij rozmowę" },
   },
   transition: {
-    headline: { en: "Hard problems. One engineer.", pl: "Trudne problemy. Jeden inżynier." },
-    sub: { en: "No committee required.", pl: "Bez zbędnych komitetów." },
+    headline: { en: "Hard problems. Founder-led delivery.", pl: "Trudne problemy. Founder prowadzi." },
+    sub: { en: "Small by default, scales when needed.", pl: "Małe z założenia, skaluje się w razie potrzeby." },
   },
   philosophy: {
     title: { en: "What you get.", pl: "Co dostajesz." },
@@ -136,6 +136,7 @@ export const translations = {
     email: { en: "your@email.com", pl: "twoj@email.com" },
     attachFile: { en: "attach file", pl: "załącz plik" },
     send: { en: "Send it", pl: "Wyślij" },
+    reassurance: { en: "No spam. No sales funnel. Just a conversation.", pl: "Bez spamu. Bez lejka sprzedażowego. Po prostu rozmowa." },
     toastTitle: { en: "Message received", pl: "Wiadomość otrzymana" },
     toastDesc: { en: "Thanks — I'll get back to you soon.", pl: "Dzięki — odezwę się wkrótce." },
     altIntro: { en: "# if you don't like forms", pl: "# jeśli nie lubisz formularzy" },

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import goatLabsLogo from "@/assets/goat-labs-logo.png";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
@@ -24,7 +25,14 @@ const Navbar = () => {
     >
       <div className="container px-6 md:px-8 flex items-center justify-between h-20">
         <a href="#" className="flex items-center">
-          <img src={goatLabsLogo.src} alt="GoatLabs" className="h-20 brightness-0 invert" />
+          <Image
+            src={goatLabsLogo}
+            alt="GoatLabs"
+            width={120}
+            height={80}
+            priority
+            className="h-20 w-auto brightness-0 invert"
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-8">

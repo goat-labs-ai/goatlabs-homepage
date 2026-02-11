@@ -16,21 +16,21 @@ const jetbrainsMono = JetBrains_Mono({
 
 const siteUrl = "https://goatlabs.dev";
 const siteName = "GoatLabs";
-const siteDescription = "Expert web development and digital solutions. Fast, reliable, and professional development services for modern businesses.";
+const siteDescription = "Senior engineering meets AI leverage. Ship production software in weeks, not quarters. Founder-led. Small by default, scales when needed.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteName} - Premium Web Development`,
+    default: `${siteName} – Senior Engineering, AI-Accelerated`,
     template: `%s | ${siteName}`,
   },
   description: siteDescription,
   keywords: [
-    "web development",
-    "software development",
-    "digital solutions",
-    "web design",
-    "custom software",
+    "senior engineering",
+    "AI-accelerated development",
+    "startup engineering",
+    "CTO services",
+    "technical founder",
     "React",
     "Next.js",
     "TypeScript",
@@ -53,17 +53,12 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
-    languages: {
-      en: `${siteUrl}?lang=en`,
-      pl: `${siteUrl}?lang=pl`,
-    },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    alternateLocale: ["pl_PL"],
     url: siteUrl,
-    title: `${siteName} - Premium Web Development`,
+    title: `${siteName} – Senior Engineering, AI-Accelerated`,
     description: siteDescription,
     siteName: siteName,
     images: [
@@ -71,13 +66,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: `${siteName} - Premium Web Development`,
+        alt: `${siteName} – Senior Engineering, AI-Accelerated`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteName} - Premium Web Development`,
+    title: `${siteName} – Senior Engineering, AI-Accelerated`,
     description: siteDescription,
     images: ["/opengraph-image"],
   },

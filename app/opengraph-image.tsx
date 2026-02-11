@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'GoatLabs - Premium Web Development';
+export const alt = 'GoatLabs – Senior Engineering, AI-Accelerated';
 export const size = {
   width: 1200,
   height: 630,
@@ -51,7 +51,7 @@ export default async function Image() {
               fontWeight: 400,
             }}
           >
-            Premium Web Development
+            Senior Engineering, AI-Accelerated
           </div>
           <div
             style={{
@@ -61,7 +61,7 @@ export default async function Image() {
               marginTop: '16px',
             }}
           >
-            Fast • Reliable • Professional
+            Ship in weeks • Zero committees
           </div>
         </div>
       </div>

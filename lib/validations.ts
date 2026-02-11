@@ -27,6 +27,8 @@ export const contactFormSchema = z.object({
         ].includes(file.type),
       "File must be PDF, PNG, JPG, or WEBP"
     ),
+  // Honeypot field - should be empty
+  website: z.string().max(0, "Spam detected").optional(),
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;

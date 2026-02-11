@@ -1,8 +1,8 @@
 // Environment variables with runtime validation
 export const env = {
   contact: {
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'hello@goatlabs.dev',
-    phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || '+48000000000',
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@goatlabs.dev',
+    phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || '+48664437489',
   },
   company: {
     name: process.env.NEXT_PUBLIC_COMPANY_NAME || 'GoatLabs',

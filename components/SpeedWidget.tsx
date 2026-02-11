@@ -9,10 +9,17 @@ const TARGET_SECONDS = 3693;
 const ANIM_DURATION = 2500;
 
 const useAnimatedTime = (start: boolean) => {
-  const [totalSec, setTotalSec] = useState(0);
+  // Start with target value for SSR/SEO - crawlers see final time immediately
+  const [totalSec, setTotalSec] = useState(TARGET_SECONDS);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (!start) return;
+    if (!start || hasAnimated) return;
+
+    // Reset to 0 and animate up on client
+    setTotalSec(0);
+    setHasAnimated(true);
+
     let startTime: number | null = null;
     let raf: number;
 
@@ -26,7 +33,7 @@ const useAnimatedTime = (start: boolean) => {
 
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [start]);
+  }, [start, hasAnimated]);
 
   return { mins: Math.floor(totalSec / 60), secs: totalSec % 60 };
 };

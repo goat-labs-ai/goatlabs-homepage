@@ -119,6 +119,16 @@ const CTASection = () => {
               />
             </div>
 
+            {/* Honeypot field - hidden from users, visible to bots */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              className="absolute opacity-0 pointer-events-none h-0 w-0"
+              aria-hidden="true"
+            />
+
             <button
               type="submit"
               disabled={isSubmitting}
@@ -126,6 +136,9 @@ const CTASection = () => {
             >
               {isSubmitting ? "Sending..." : t(c.send)}
             </button>
+            <p className="text-xs text-muted-foreground/50 mt-3 font-mono">
+              {t(c.reassurance)}
+            </p>
           </form>
 
           <div className="mt-10 pt-6 border-t border-border/50">
