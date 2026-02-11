@@ -4,39 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLang } from "@/i18n/LanguageContext";
 import { translations } from "@/i18n/translations";
-
-const TARGET_SECONDS = 3693;
-const ANIM_DURATION = 2500;
-
-const useAnimatedTime = (start: boolean) => {
-  // Start with target value for SSR/SEO - crawlers see final time immediately
-  const [totalSec, setTotalSec] = useState(TARGET_SECONDS);
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  useEffect(() => {
-    if (!start || hasAnimated) return;
-
-    // Reset to 0 and animate up on client
-    setTotalSec(0);
-    setHasAnimated(true);
-
-    let startTime: number | null = null;
-    let raf: number;
-
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / ANIM_DURATION, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setTotalSec(Math.floor(eased * TARGET_SECONDS));
-      if (progress < 1) raf = requestAnimationFrame(step);
-    };
-
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [start, hasAnimated]);
-
-  return { mins: Math.floor(totalSec / 60), secs: totalSec % 60 };
-};
+import { TimerDisplay } from "./TimerDisplay";
 
 const stack = ["Custom React", "TypeScript", "Cloud infra", "CI/CD"];
 
@@ -45,7 +13,6 @@ const SpeedWidget = () => {
   const s = translations.speed;
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { mins, secs } = useAnimatedTime(isInView);
   const [iframeUrl, setIframeUrl] = useState("");
 
   useEffect(() => {
@@ -74,16 +41,7 @@ const SpeedWidget = () => {
 
             <div className="p-5 md:p-6">
               <div className="mb-5">
-                <div className="flex items-baseline gap-1 font-mono">
-                  <span className="text-4xl md:text-5xl font-bold text-bright tabular-nums tracking-tight">
-                    {String(mins).padStart(2, "0")}
-                  </span>
-                  <span className="text-lg text-muted-foreground font-normal">m</span>
-                  <span className="text-4xl md:text-5xl font-bold text-bright tabular-nums tracking-tight ml-1">
-                    {String(secs).padStart(2, "0")}
-                  </span>
-                  <span className="text-lg text-muted-foreground font-normal">s</span>
-                </div>
+                <TimerDisplay start={isInView} />
                 <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
                   {descLines.map((line, i) => (
                     <span key={i}>
